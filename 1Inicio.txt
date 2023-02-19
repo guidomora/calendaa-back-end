@@ -148,3 +148,24 @@ Los JWT tienen 3 partes importantes:
 
 ------------------------------------------------------
 Revalidar JWT
+
+1) middlewares > validar-jsw.js
+2) en el archivo creamos una funcion que se va a encargar de revalidar el token
+3) en postman duplicamos la peticion de login pero le cmabiamos el nombre y el metodo a GET.
+    en el header agregamos una key que se llama "x-token" y el value le pobemos "ABC123"
+4) en auth (routes) llamamos a la funcion
+5) en postman ejecutamos la peticion oroginal del login, copiamos el token y lo pegamos en el
+    value del header de la peticion para revalidar JWT
+6) en validar-jsw le agregamos una validacion por si no hay token y hacemos un try catch
+7) en postman hacemos de nuevo la peticion del revalidar
+8) en auth (controllers) en la funcion de revalidar token traemos el uid y el name de la req
+    y a la res les pasamos esos mismos valores
+9) dentro de esta funcion copiamos la linea para generar otro token y pasamos el token en la res
+
+------------------------------------------------------
+Configurar CORS:
+
+es una capa de seguridad para limitar quienes pueden hacer peticiones a nuestra API
+
+1) npm install cors
+2) lo llamamos en el index

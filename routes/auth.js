@@ -13,6 +13,7 @@ const {
   revalidarToken,
 } = require("../controllers/auth");
 const { validarCampos } = require("../middlewares/validar-campos");
+const { validarJWT } = require("../middlewares/validar-jsw");
 
 // Luego del router viene el tipo de peticion que esperamos, el callback que nos pide despues del "/"
 // es la request y la response
@@ -44,7 +45,13 @@ router.post("/",
 ], 
 loginUsuario);
 
-router.get("/renew", revalidarToken);
+
+
+
+// Aca al tener uno solo, no hace falta crear un array
+router.get("/renew", validarJWT, revalidarToken);
+
+
 
 //  Exportacion en node
 module.exports = router;
