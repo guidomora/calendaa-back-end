@@ -1,0 +1,150 @@
+1) Creamos la carpeta separada de la de front
+2) en la consola escribimos npm init
+3) Creamos un index.js
+4) para ejecutar el archivo: en la consola escribimos "node index.js"
+5) instalamos como administrador desde el cmd: npm i nodemon -g  para que no tengamos que escribir el codigo de arriba cada vez
+    que haya un cambio en el archivo, se ejecuta solo
+6) ejecutamos en la consola "nodemon index.js" y se ejecuta cada vez que detecte algun cambio
+7) en el package.json en la parte de scripts agregamos "dev" para que cuando ejecutemos en la
+    consola "npm run dev" ejecute el nodemon index.js y despues agregamos "start" para que
+    ejecute "node index.js" asi no tenemos que andar escribiendo todo, solo con esos 2 comandos
+
+
+------------------------------------------------------
+
+Configuracion de Express:
+
+1) npm i express
+2) agregamos lineas de configuracion en index.js
+
+------------------------------------------------------
+Variables de entorno y carpeta publica
+
+1) creamos la carpeta public
+2) centro creamos el index.html y styles.css
+3) creamos un directorio publico en el index.js
+4) creamos un archivo .env
+5) npm i dotenv
+6) escribimos lineas para la configuracion del .env
+7) del 4 al 6 es para establecer una variable de entorno
+
+------------------------------------------------------
+Creando rutas relacionadas con el usuario
+
+1) creamos el archivo auth.js
+2) en el index "importamos" el archivo auth.js
+
+------------------------------------------------------
+Endpoints de remover crear y login:
+
+1) modificamos el endpoint que teniamos en el auth.js
+2) creamos 2 endpoints mas
+3) creamos la carpeta controllers y dentro el archivo auth.js
+4) en ese vamos a crear funciones que luego las vamos a importar en el auth.js dentro del routes
+
+------------------------------------------------------
+Recuperar informacion de un posteo:
+
+1) en auth (controllers) desestructuramos de la request el body y de ahi sacamos los
+    datos del usuario, para agregarlos en la creacion del usuario
+2) Lo mismo para el login solo que usamos el mail y password
+3) Le agregamos una validacion con un condicional para la creacion del usuario
+4) a la validacion le agregamos que el status de la request es 400 (no se pudo realizar la request
+    debido a que ingreso mal los datos el cliente)
+
+------------------------------------------------------
+
+Express validator: paquete para hacer validaciones de informacion que recibimos
+
+1) npm install express-validator
+2) en el auth (routes) creamos un array de middlewares
+3) importamos check de express validator
+4) dentro del array de middlewares creamos un check
+5) en auth (controllers) importamos validationResult
+6) creamos la validacion en la funcion de crearUsuario
+7) creamos mas checks en el array de middlewares en auth (routes)
+
+------------------------------------------------------
+Custom middleware:
+
+1) creamos la carpeta middlewares y dentro creamos el archivo validar-campos.js
+2) creamos la funcion validarCampos
+3) recortamos la validacion que estaba en loginUsuario (auth controllers) y lo pegamos
+4) en auth (routes) importamos el middleware al final de cada array de middlewares
+
+------------------------------------------------------
+
+Configuracion de base de datos:
+
+db user: guido
+password: calendar
+
+1) Al link que nos dan para conectarnos a la base de datos le sacamos  el "/test"
+
+------------------------------------------------------
+
+Conectar node a mongo atlas:
+
+1) instalamos mongoose npm i mongoose 
+2) creamos una carpeta database y dentro config.js
+3) en ese archivo vamos a configurar mongoose
+4) en el archivo .env pegamos la database connection (el link que nos da mongo)
+5) exportamos el modulo
+6) en el index llamamos a dbConnection()
+
+------------------------------------------------------
+Crear un usuario en nuestra base de datos:
+
+1) creamos la carpeta model y dentro el archivo Usuario.js
+2) dentro definimos el Schema (como va a lucir la info que queremos guardar)
+    y lo exportamos
+3) creamos la constante usuario dentro de la funcnion crearUsuario
+4) a la funcnion crearUsuario le agregamos async y el await cuando guardamos en la db
+5) desde postman probamos hacer la creacion del usuario y se hace correctamente
+6)  en auth (controllers) a crearUsuario le agregamos un try catch para que arroje
+    error 500
+
+------------------------------------------------------
+Validaciones del usuario: 
+
+1) descomentamos la desestruturacion del req.body (auth controllers)
+2) creamos un let usuario que va a contener el usuario pq despues va a ser modificado
+3) agregamos un condicional que valide si ya existe un usuario con ese mail
+
+------------------------------------------------------
+Encriptar password:
+
+1) instalamos npm i bcryptjs
+2) en auth (controllers) creamos unas constantes
+3) ahora hacemos la peticion en postman y al checkear en mongo, la password esta encriptada
+
+------------------------------------------------------
+
+Login de usuario:
+
+1) en auth (controllers) en la funcion de loginUsuario creamos un try catch 
+2) creamos constante para comparar passwords
+3) creamos un condicional para que se ejecute en caso de que no sea correcta la password
+
+------------------------------------------------------
+Generar un JWT:
+
+Los JWT tienen 3 partes importantes:
+- Header: que tipo de algoritmo se usa para su encriptacion y que tipo de token que es.
+- Payload: la info que se guarda dentro del token, es de muy facil acceso asi que no haya
+    que poner info sensible.
+- Firma: la parte mas importante, se manda una palabra secreta que nos va a permitir firmarlo
+    y si el token no tiene esa firma o no hace match con la nuestra, inmediatamente queda sin 
+    validez el token. Hay que ponerle una fecha de expiracion
+
+1) ya que lo vamos a tener que usar 3 veces, creamos la carpeta helpers > jwt.js
+2) instalamos npm i jsonwebtoken
+3) en jwt creamos una funcion y dentro una promesa que se encarga de el proceso del token
+4) en .env creamos una variable de entorno nueva para pasar en la promesa
+5) agregamos el tiempo de expiracion, despues en un callback hay que poner si tiene error y
+    creamos un condicional para mostrarlo
+6) si todo se hace bien termina con un resolve del token
+7) en auth (controllers) creamos una constante token e importamos la funcion de generarJWT
+
+------------------------------------------------------
+Revalidar JWT
