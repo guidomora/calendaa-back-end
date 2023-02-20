@@ -1,0 +1,5 @@
+Configuracion:
+
+1) creamos un archivo nuevo en la carpeta routes > events.js
+2)
+3)
