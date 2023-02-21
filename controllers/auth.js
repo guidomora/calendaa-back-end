@@ -19,7 +19,7 @@ const crearUsuario = async (req, res = response) => {
     usuario = new Usuario(req.body);
 
     // Encriptar password
-    // Como argunmento pide el numero de vueltas, mientras + vueltas mas compleja es la password, pero
+    // Como argumento pide el numero de vueltas, mientras + vueltas mas compleja es la password, pero
     // mas pesado el porocesamiento, si lo dejamos vacio usa el valor 10 por defecto
     const salt = bcrypt.genSaltSync();
     usuario.password = bcrypt.hashSync(password, salt);

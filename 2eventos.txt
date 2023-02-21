@@ -1,5 +1,14 @@
 Configuracion:
 
-1) creamos un archivo nuevo en la carpeta routes > events.js
-2)
-3)
+1) creamos un archivo nuevo en la carpeta routes > events.js que va a tener los endpoints
+2) creamos un archivo nuevo en la carpeta controllers > events.js que va a tener la rta de 
+    los servicios llamados
+
+---------------------------------------------------
+
+Creando CRUD:
+
+1) en events (routes) importamos Router de express y desestructuramos para que se llame router
+2) en events (controllers) creamos las funciones con cada metodo http y le agregamos una res momentanea
+3) en events (routes) a las peticiones creadas, les agregamos la validacion del JWT y cada una
+    tiene su propia funcion para las respuestas de los eventos

@@ -42,6 +42,7 @@ app.use(express.json())
 // todo lo que exporta el archivo auth.js, se va a habilitar en la ruta
 //        ruta            ruta del archivo auth.js
 app.use("/api/auth", require("./routes/auth"))
+app.use("/api/events", require("./routes/events"))
 
 
 
