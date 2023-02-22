@@ -12,3 +12,35 @@ Creando CRUD:
 2) en events (controllers) creamos las funciones con cada metodo http y le agregamos una res momentanea
 3) en events (routes) a las peticiones creadas, les agregamos la validacion del JWT y cada una
     tiene su propia funcion para las respuestas de los eventos
+
+---------------------------------------------------
+Modelo Evento: 
+
+1) en models creamos > Evento.js
+2) dentro de este archivo mantenemos el mismo formato de archivo que en Usuario.js
+3) en events (constrollers) probamos con un consolelog si se ve el req.body
+
+---------------------------------------------------
+Validamos los campos necesarios:
+
+1) en events (routes) agregamos los check
+2) y le agregamos nuestro middleware "validarCampos"
+3) en helpers > isDate.js
+4) creamos un custom validator (validacion custom que creamos nosotros desde 0)
+5) >>>>>  npm i moment
+6) creamos la validacion y la agregamos en los checks 
+
+---------------------------------------------------
+Grabar evento en la base de datos:
+
+1) en events (controllers) a la funcion de crearEvento le agregamosla logica para guaradr en base 
+    de datos
+2) necesitamos el id del usuario para poder guardar en la base de datos, entonces lo traemos 
+3) en Evento (models) configuramos para no ver el id y la version 
+
+---------------------------------------------------
+Obtener el listado de eventos:
+
+1) en events (controllers) creamos una constante eventos y usamos find para que traiga los 
+    eventos y luego los agregamos en la res
+

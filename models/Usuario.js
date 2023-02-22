@@ -6,17 +6,17 @@ const UsuarioSchema = Schema({
     name: {
         type: String,
         // significa que va a ser requerido
-        require: true
+        required: true
     },
     mail: {
         type: String,
-        require: true,
+        required: true,
         // Unico
         unique: true,
     },
     password: {
         type: String,
-        require: true,
+        required: true,
     }
 })
 
