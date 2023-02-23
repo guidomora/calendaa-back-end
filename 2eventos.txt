@@ -43,4 +43,21 @@ Obtener el listado de eventos:
 
 1) en events (controllers) creamos una constante eventos y usamos find para que traiga los 
     eventos y luego los agregamos en la res
+2) le agregamos el metodo populate donde especificamos que dentro del user nos traiga el name
+
+---------------------------------------------------
+Actualizar un evento:
+
+1) en postman copiamos el id de un evento, lo pegamos donde iria la peticion y en el body
+    escribimos algo para que actualice
+2) creamos un try catch donde pasamos el id, validamos que exista el id y sino lanzamos un error
+3) creamos otra validacion para que deje editar solo al creador de esa nota
+4) creamos la actualizacion del evento
+
+---------------------------------------------------
+
+Eliminar eventos:
+
+1) en postman pegamos el id del evento que queremos borrar
+2) es lo mismo que para actualizarEvento solo que no hay que pasar un evento nuevo
 

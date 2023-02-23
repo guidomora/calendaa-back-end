@@ -22,7 +22,7 @@ const EventoSchema = Schema({
         // esto seria una referencia
         type: Schema.Types.ObjectId,
         // aca aclaramos a donde hace la referencia
-        ref: "Evento",
+        ref: "Usuario",
         required: true
     }
 
